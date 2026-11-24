@@ -3,130 +3,143 @@
 ![Language](https://img.shields.io/badge/Language-C-blue.svg)
 ![Build](https://img.shields.io/badge/Build-Flex%20%7C%20Bison-success.svg)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-lightgrey.svg)
+![Course](https://img.shields.io/badge/Course-CSE314%20Compiler%20Design-orange.svg)
 ![Status](https://img.shields.io/badge/Status-Completed-brightgreen.svg)
 
-> A lightweight command-line scientific calculator implemented in C using **Flex** and **Bison**.  
-> Built as part of the **Compiler Design (CSE314)** course at **Daffodil International University**, this project demonstrates key compiler design concepts such as **lexical analysis, parsing, semantic evaluation, and error handling**.
+A high-performance command-line scientific calculator developed in **C** using **Flex (Lexical Analyzer)** and **Bison (Parser Generator)**.
+
+Developed as a major project for the **Compiler Design (CSE314)** course at **Daffodil International University (DIU)**, this application demonstrates practical compiler construction principles including **lexical analysis, syntax parsing, semantic evaluation, precedence parsing, and robust error handling**.
 
 ---
 
-## 📑 Table of Contents
+## 📋 Table of Contents
 - [🚀 Features](#-features)
 - [🛠️ Technologies Used](#️-technologies-used)
 - [📂 Project Structure](#-project-structure)
-- [⚙️ Installation & Usage](#️-installation--usage)
+- [⚙️ Installation & Build Guide](#️-installation--build-guide)
 - [🖥️ Example Inputs & Outputs](#️-example-inputs--outputs)
-- [📊 Performance](#-performance)
+- [📊 Performance Highlights](#-performance-highlights)
 - [📌 Future Improvements](#-future-improvements)
 - [👨‍💻 Contributors](#-contributors)
-- [🎓 Acknowledgment](#-acknowledgment)
+- [🎓 Academic Acknowledgment](#-academic-acknowledgment)
 
 ---
 
 ## 🚀 Features
-- Perform **basic arithmetic operations**: `+`, `-`, `*`, `/`, `%`
-- Support for **scientific functions**:
-  - Trigonometric: `sin`, `cos`, `tan`
-  - Logarithmic: `log`
-  - Exponential: `exp`
-  - Power: `^`
-  - Square root: `sqrt`
-- **Error handling** for invalid or incomplete expressions
-- Lightweight and portable **CLI tool**
-- Extensible modular design for future enhancements
+- **Basic Arithmetic Operations:** Addition (`+`), Subtraction (`-`), Multiplication (`*`), Division (`/`), Modulus (`%`).
+- **Advanced Scientific Functions:**
+  - **Trigonometric:** `sin(x)`, `cos(x)`, `tan(x)`
+  - **Logarithmic:** `log(x)` (Natural Logarithm)
+  - **Exponential:** `exp(x)`
+  - **Power Function:** `x ^ y`
+  - **Square Root:** `sqrt(x)`
+- **Operator Precedence & Associativity:** Accurately parsed using Bison grammar definitions.
+- **Robust Error Handling:** Detects syntax errors, division by zero, and invalid expressions.
+- **Fast CLI Execution:** Ultra-lightweight command-line interface with instantaneous mathematical evaluations.
 
 ---
 
 ## 🛠️ Technologies Used
-- **C Programming**
-- **Flex** – Lexical Analysis
-- **Bison** – Syntax Parsing
-- **GCC** – Compilation
+- **C Language** – Core evaluation engine & mathematical computation (`math.h`)
+- **Flex** – Fast lexical analyzer generator (tokenization)
+- **Bison** – LALR(1) parser generator (syntax tree and grammar analysis)
+- **GCC / MinGW** – Compiler toolchain
 
 ---
 
 ## 📂 Project Structure
 ```bash
-.
-├── calculator_with_conversion.l   # Lexer definitions (Flex)
-├── calculator_with_conversion.y   # Parser definitions (Bison)
-├── Makefile                       # Build instructions (if any)
-├── README.md                      # Documentation
-└── report.pdf                     # Project Report
-
+Compiler-Design-Scientific-Calculator/
+├── calculator_with_conversion.l   # Flex lexical specification (tokens & patterns)
+├── calculator_with_conversion.y   # Bison parser grammar rules & execution logic
+├── Screenshot/                    # Project execution output screenshots
+│   └── Screenshot.png
+├── Project Report.pdf             # Comprehensive academic project documentation
+├── text.yaml                      # Build reference commands
+└── README.md                      # Project documentation
 ```
 
 ---
 
-## ⚙️ Installation & Usage
-**Prerequisites**
+## ⚙️ Installation & Build Guide
 
-- GCC (GNU Compiler Collection)
-- Flex
-- Bison
+### Prerequisites
+Make sure **GCC**, **Flex**, and **Bison** are installed and added to your system `PATH`.
 
-## Build & Run (Windows Example)
+### Build & Run Commands
+
+You can compile the project using the terminal / command prompt:
+
 ```bash
+# 1. Generate parser C code and header file
 bison -d calculator_with_conversion.y
+
+# 2. Generate lexical analyzer C code
 flex calculator_with_conversion.l
+
+# 3. Compile generated source files with GCC
 gcc -o app calculator_with_conversion.tab.c lex.yy.c -mconsole
-.\app.exe
+
+# 4. Run the executable
+./app.exe
 ```
+
 ---
 
+## 🖥️ Execution Preview & Output
 
 <div align="center">
-  <img src="Screenshot/Screenshot.png" alt="Calculator Example Screenshot" width="600"/>
+  <img src="Screenshot/Screenshot.png" alt="Scientific Calculator Execution Screenshot" width="700"/>
 </div>
 
-## 🖥️ Example Inputs & Outputs
+### Sample Test Cases
 ```bash
-> 5+3*2
+> 5 + 3 * 2
 = 11
 
 > sqrt(49)
 = 7
 
-> sin(3.14159/2)
+> sin(3.14159 / 2)
 = 1.000000
+
+> 2 ^ 8
+= 256.000000
 
 > log(10)
 = 2.302585
 ```
-Invalid inputs (e.g., 5++2 or sqrt(-4)) will produce clear error messages.
 
 ---
 
-## 📊 Performance
-
-- Real-time computation without GUI overhead
-- Low memory usage, runs on low-spec machines
-- Provides clear error messages for invalid inputs
+## 📊 Performance Highlights
+- Zero GUI overhead resulting in minimal RAM usage (< 5 MB).
+- Native execution speed powered by C compiled binaries.
+- Safe arithmetic bounds checking with clear runtime error messages.
 
 ---
 
 ## 📌 Future Improvements
-
--  Add complex numbers and matrix operations
-- Implement variable assignment & calculation history
-- Create a GUI frontend (GTK/Qt) while keeping CLI backend intact
+- [ ] Add support for complex numbers and matrix computations.
+- [ ] Implement variables assignment (`x = 10; y = x * 2;`).
+- [ ] Session-based history logging.
+- [ ] Lightweight cross-platform GUI frontend.
 
 ---
 
 ## 👨‍💻 Contributors
 
-**Shahriar Ahamed Ripon** (ID: 1019)  
-**Omar Faruk Piash** (ID: 1659)  
-**Md Faysal Ahamed** (ID: 1376)  
-**Injamum Ul Hoque** (ID: 1645)  
-**Md Sorowar Jahan Ishan** (ID: 1559)  
+* **Shahriar Ahammed Ripon** (ID: 0242310005101019) — [@Shariar-Always](https://github.com/Shariar-Always) | [Portfolio](https://www.shariarahamed.com)
+* **Omar Faruk Piash** (ID: 1659)
+* **Md Faysal Ahamed** (ID: 1376)
+* **Injamum Ul Hoque** (ID: 1645)
+* **Md Sorowar Jahan Ishan** (ID: 1559)
 
 ---
 
-## 🎓 Acknowledgment
+## 🎓 Academic Acknowledgment
 
-This project was completed as part of **CSE314**: Compiler Design
-Department of **Computer Science and Engineering**
-**Daffodil International University**, Dhaka, Bangladesh
-
-## 📅 *August 2025*
+* **Course:** CSE314 – Compiler Design Lab
+* **Department:** Computer Science and Engineering (CSE)
+* **Institution:** Daffodil International University (DIU), Dhaka, Bangladesh
+* **Project Period:** *August 2025*
